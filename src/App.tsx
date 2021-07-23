@@ -19,11 +19,11 @@ function App() {
     try {
       const res = await fetch(`http://localhost:4000${endpoint}`);
       const body = await res.json();
-      setMessage(body.message);
+      setMessage(body.description);
       setDigipetStats(body.digipet);
     } catch (err) {
       console.log(err);
-      setMessage(`${err.name}: ${err.message}`);
+      setMessage(`${err.name}: ${err.description}`);
     }
   };
 
@@ -55,7 +55,12 @@ function App() {
             name: "Walk",
             handler: () => loadDataFromEndpoint("/digipet/walk"),
           },
-          { name: "Feed" },
+          { 
+            name: "Feed",
+            handler: () => loadDataFromEndpoint("/digipet/feed") },
+          { 
+            name: "Ignore",
+            handler: () => loadDataFromEndpoint("/digipet/ignore") }
         ]}
       />
     </main>
